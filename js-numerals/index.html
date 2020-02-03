@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JS Numerals</title>
+
+  <link rel="shortcut icon" type="image/png" href="jasmine/lib/jasmine-3.5.0/jasmine_favicon.png" />
+  <link rel="stylesheet" type="text/css" href="jasmine/lib/jasmine-3.5.0/jasmine.css" />
+
+  <script type="text/javascript" src="jasmine/lib/jasmine-3.5.0/jasmine.js"></script>
+  <script type="text/javascript" src="jasmine/lib/jasmine-3.5.0/jasmine-html.js"></script>
+  <script type="text/javascript" src="jasmine/lib/jasmine-3.5.0/boot.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <form>
+      <div>
+        Type a number here below. Click on the "Submit" button to convert it
+        to an English phrase.
+      </div>
+      <br />
+      <input id="number-field" type="number" name="number" value="0" />
+      <br />
+      <br />
+      <input id="submit-button" onClick="convertNumber()" type="button" value="Submit" />
+    </form>
+    <br />
+    <div id="word-container">
+      English phrase:
+      <span id="word-field"></span>
+    </div>
+  </div>
+  <script src="convert.js"></script>
+  <br />
+  <br />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="jasmine/lib/jasmine-jquery-2.1.1/jasmine-jquery.js"></script>
+  <script src="jasmine/spec/ConvertHelper.js"></script>
+</body>
+
+</html>

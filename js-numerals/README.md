@@ -1,25 +1,23 @@
 # JavaScript/Front-end Developer - Exercise 1
 
-## Instructions
+## Site
 
-- Fork this project.
-- Write tests.
-- Don't use external libraries for the conversion.
-- Commit the important milestones and not just the final result.
+The application contains a web form, which has a numeric input field and a "Submit" button. When the user gives an arabic number, the system shows the English phrase of that number, for example: an input like **1** will be converted into: _one_
 
-## Exercise description
+The app is part of a JavaScript/Front-end Developer exercise.
 
-Create an application that contains a web form, which has a numeric input field and a submit button.
+## How to run the app?
 
-When the user gives an arabic number, the system shows the english phrase of that number.
+- A demo of the app can be seen at: https://alffox.github.io/js-practice/js-numerals/index.html, OR
+- Clone the project from https://github.com/alffox/js-practice.git and open JS-practice/js-numerals/index.html with any browser
 
-For example:
-<pre>
-7    == seven
-42   == forty-two
-2001 == two thousand and one
-1999 == nineteen hundred and ninety-nine
-17999 == seventeen thousand nine hundred and ninety-nine
-</pre>
+## Specifications
 
-That's all.
+- The project needs to have tests
+- No external libraries usage is allowed for the number conversion
+
+## Used technologies
+
+- [Jasmine](https://jasmine.github.io/) v. `3.5.0` for the JS tests
+- [Jasmine-jquery](https://github.com/velesin/jasmine-jquery) v. `2.1.1` for the DOM tests
+- [jQuery](https://jquery.com/) v. `3.4.1` to support the Jasmine fuctionalities
