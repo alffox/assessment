@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Button from 'react-bootstrap/Button';
+
 class App extends React.Component {
   state = {
     error: null,
@@ -39,6 +41,7 @@ class App extends React.Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
         </p>
+          <Button variant="primary">Primary</Button>{' '}
           <ul>
             {this.state.users.map((user, index) => {
               return (
