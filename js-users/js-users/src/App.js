@@ -49,7 +49,7 @@ class App extends React.Component {
                   {user.first_name}
                 </li>
               )
-            })};
+            })}
           </ul>
           <a
             className="App-link"
