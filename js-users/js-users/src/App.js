@@ -1,8 +1,10 @@
 import React from 'react';
 import './App.css';
 
-import Pagination from 'react-bootstrap/Pagination' // Inspired by https://react-bootstrap.netlify.com/components/pagination/#pagination
-import Table from 'react-bootstrap/Table' // Inspired by https://react-bootstrap.netlify.com/components/table/#tables
+import Pagination from 'react-bootstrap/Pagination'; // Inspired by https://react-bootstrap.netlify.com/components/pagination/#pagination
+import Table from 'react-bootstrap/Table'; // Inspired by https://react-bootstrap.netlify.com/components/table/#tables
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 class App extends React.Component {
   constructor() {
@@ -80,10 +82,8 @@ class App extends React.Component {
     });
 
     return (
-      <div className="App">
-        <header className="App-header">
-        </header>
-        <div>
+      <Container>
+        <Row>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -96,11 +96,11 @@ class App extends React.Component {
               {renderUsers}
             </tbody>
           </Table>
-          <div>
+          <Row>
             <Pagination size="small">{renderPageNumbers}</Pagination>
-          </div>
-        </div>
-      </div>
+          </Row>
+        </Row>
+      </Container>
     );
   }
 }
