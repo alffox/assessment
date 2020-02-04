@@ -1,10 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import Pagination from 'react-bootstrap/Pagination'; // Inspired by https://react-bootstrap.netlify.com/components/pagination/#pagination
-import Table from 'react-bootstrap/Table'; // Inspired by https://react-bootstrap.netlify.com/components/table/#tables
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import { Container, Row, Col, Pagination, Table } from 'react-bootstrap';
 
 class App extends React.Component {
   constructor() {
