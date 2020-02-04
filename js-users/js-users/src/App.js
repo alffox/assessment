@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import Pagination from 'react-bootstrap/Pagination' // Inspired by https://react-bootstrap.netlify.com/components/pagination/#pagination
@@ -83,10 +82,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-        </p>
           <div>
             <Table striped bordered hover>
               <thead>
@@ -104,14 +99,6 @@ class App extends React.Component {
               <Pagination size="small">{renderPageNumbers}</Pagination>
             </div>
           </div>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-        </a>
         </header>
       </div>
     );
