@@ -82,24 +82,24 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <div>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Created At</th>
-                </tr>
-              </thead>
-              <tbody>
-                {renderUsers}
-              </tbody>
-            </Table>
-            <div>
-              <Pagination size="small">{renderPageNumbers}</Pagination>
-            </div>
-          </div>
         </header>
+        <div>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Created At</th>
+              </tr>
+            </thead>
+            <tbody>
+              {renderUsers}
+            </tbody>
+          </Table>
+          <div>
+            <Pagination size="small">{renderPageNumbers}</Pagination>
+          </div>
+        </div>
       </div>
     );
   }
