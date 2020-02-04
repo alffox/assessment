@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Pagination from 'react-bootstrap/Pagination' // Inspired by https://react-bootstrap.netlify.com/components/pagination/#pagination
+import Table from 'react-bootstrap/Table' // Inspired by https://react-bootstrap.netlify.com/components/table/#tables
 
 class App extends React.Component {
   constructor() {
@@ -53,9 +54,11 @@ class App extends React.Component {
 
     const renderUsers = currentUsers.map((user, index) => {
       return (
-        <li key={index}>
-          {user.first_name}
-        </li>
+        <tr key={index}>
+          <td>{user.first_name}</td>
+          <td>{user.last_name}</td>
+          <td>{user.created_at}</td>
+        </tr>
       )
     });
 
@@ -85,11 +88,20 @@ class App extends React.Component {
             Edit <code>src/App.js</code> and save to reload.
         </p>
           <div>
-            <ul>
-              {renderUsers}
-            </ul>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Created At</th>
+                </tr>
+              </thead>
+              <tbody>
+                {renderUsers}
+              </tbody>
+            </Table>
             <div>
-              <Pagination size="sm">{renderPageNumbers}</Pagination>
+              <Pagination size="small">{renderPageNumbers}</Pagination>
             </div>
           </div>
           <a
