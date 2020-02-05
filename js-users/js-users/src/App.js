@@ -110,7 +110,7 @@ class App extends React.Component {
     return (
       <Container>
         <Row>
-          <Table striped bordered hover>
+          <Table striped bordered hover responsive>
             <thead>
               <tr>
                 <th>Status</th>
