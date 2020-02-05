@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 
 import { Container, Row, Col, Pagination, Table } from 'react-bootstrap';
+import BootstrapSwitchButton from 'bootstrap-switch-button-react' // Docs @ https://gitbrent.github.io/bootstrap-switch-button-react/
 
 class App extends React.Component {
   constructor() {
@@ -64,11 +65,28 @@ class App extends React.Component {
     const renderUsers = currentUsers.map((user, index) => {
       return (
         <tr key={index}>
-          <td>{user.status}</td>
           {user.status === "active" ? (
-            <td onClick={this.toggleStatus.bind(this, user)}>0</td>
+            <td>
+              <BootstrapSwitchButton
+                size="sm"
+                width={75}
+                checked={true}
+                onlabel='Active'
+                offlabel='Locked'
+                onChange={this.toggleStatus.bind(this, user)}
+              />
+            </td>
           ) : (
-              <td onClick={this.toggleStatus.bind(this, user)}>X</td>
+              <td>
+                <BootstrapSwitchButton
+                  size="sm"
+                  width={75}
+                  checked={false}
+                  onlabel='Active'
+                  offlabel='Locked'
+                  onChange={this.toggleStatus.bind(this, user)}
+                />
+              </td>
             )}
           {user.status === "active" ? (
             <td>{user.first_name}</td>
@@ -114,7 +132,6 @@ class App extends React.Component {
             <thead>
               <tr>
                 <th>Status</th>
-                <th>Toggle Status</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Created At</th>
