@@ -70,9 +70,21 @@ class App extends React.Component {
           ) : (
               <td onClick={this.toggleStatus.bind(this, user)}>X</td>
             )}
-          <td>{user.first_name}</td>
-          <td>{user.last_name}</td>
-          <td>{user.created_at}</td>
+          {user.status === "active" ? (
+            <td>{user.first_name}</td>
+          ) : (
+              <td><del>{user.first_name}</del></td>
+            )}
+          {user.status === "active" ? (
+            <td>{user.last_name}</td>
+          ) : (
+              <td><del>{user.last_name}</del></td>
+            )}
+          {user.status === "active" ? (
+            <td>{user.created_at}</td>
+          ) : (
+              <td><del>{user.created_at}</del></td>
+            )}
         </tr>
       )
     });
