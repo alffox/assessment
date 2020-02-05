@@ -13,13 +13,24 @@ class App extends React.Component {
       currentPage: 1,
       usersPerPage: 10
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handlePaginatorClick = this.handlePaginatorClick.bind(this);
+    this.toggleStatus = this.toggleStatus.bind(this);
   }
 
-  handleClick(event) {
+  handlePaginatorClick(event) {
     this.setState({
       currentPage: Number(event.target.id)
     });
+  }
+
+  toggleStatus(user) {
+    if (user.status === "active") {
+      user.status = "locked";
+      this.setState({ user: !this.state.user })
+    } else if (user.status === "locked") {
+      user.status = "active";
+      this.setState({ user: !this.state.user })
+    }
   }
 
   componentDidMount() {
@@ -53,6 +64,12 @@ class App extends React.Component {
     const renderUsers = currentUsers.map((user, index) => {
       return (
         <tr key={index}>
+          <td>{user.status}</td>
+          {user.status === "active" ? (
+            <td onClick={this.toggleStatus.bind(this, user)}>0</td>
+          ) : (
+              <td onClick={this.toggleStatus.bind(this, user)}>X</td>
+            )}
           <td>{user.first_name}</td>
           <td>{user.last_name}</td>
           <td>{user.created_at}</td>
@@ -71,7 +88,7 @@ class App extends React.Component {
           key={number}
           id={number}
           active={number === this.state.currentPage}
-          onClick={this.handleClick}
+          onClick={this.handlePaginatorClick}
         >
           {number}
         </Pagination.Item>
@@ -84,6 +101,8 @@ class App extends React.Component {
           <Table striped bordered hover>
             <thead>
               <tr>
+                <th>Status</th>
+                <th>Toggle Status</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Created At</th>
