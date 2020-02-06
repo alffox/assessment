@@ -127,6 +127,7 @@ class App extends React.Component {
 
     return (
       <Container>
+        <h1 className="text-center">JS-Users App</h1>
         <Row>
           <Table striped bordered hover responsive>
             <thead>
