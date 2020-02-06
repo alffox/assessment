@@ -4,6 +4,8 @@ import './App.css';
 import { Container, Row, Col, Pagination, Table } from 'react-bootstrap';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react' // Docs @ https://gitbrent.github.io/bootstrap-switch-button-react/
 
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 class App extends React.Component {
   constructor() {
     super();
@@ -125,9 +127,62 @@ class App extends React.Component {
       );
     });
 
+    const New = () => {
+      // fetch('http://js-assessment-backend.herokuapp.com/users.json', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Accept': 'application/json',
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     first_name: "Alfonso",
+      //     last_name: "Crisci",
+      //     status: "active"
+      //   })
+      // })
+
+      return (
+        <div>
+          <h2>Add New User Form</h2>
+        </div>
+      );
+    }
+
+    function Edit() {
+      return (
+        <div>
+          <h2>Edit User's data</h2>
+        </div>
+      );
+    }
+
     return (
       <Container>
         <h1 className="text-center">JS-Users App</h1>
+        <Router>
+          <div>
+            <ul>
+              <li>
+                <Link to="/new">New</Link>
+              </li>
+              <li>
+                <Link to="/edit">Edit</Link>
+              </li>
+            </ul>
+
+            <hr />
+
+            <Switch>
+              <Route exact path="/new">
+                <New />
+              </Route>
+              <Route path="/edit">
+                <Edit />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+
         <Row>
           <Table striped bordered hover responsive>
             <thead>
