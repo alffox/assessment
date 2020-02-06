@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import { Container, Row, Col, Pagination, Table } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button, Pagination, Table, Accordion } from 'react-bootstrap';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react' // Docs @ https://gitbrent.github.io/bootstrap-switch-button-react/
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -14,10 +14,13 @@ class App extends React.Component {
       isLoaded: false,
       users: [],
       currentPage: 1,
-      usersPerPage: 10
+      usersPerPage: 10,
+      new_first_name: '',
+      new_last_name: ''
     };
     this.handlePaginatorClick = this.handlePaginatorClick.bind(this);
     this.toggleStatus = this.toggleStatus.bind(this);
+    this.handleNewFirstName = this.handleNewFirstName.bind(this);
   }
 
   handlePaginatorClick(event) {
@@ -35,6 +38,35 @@ class App extends React.Component {
       this.setState({ user: !this.state.user })
     }
   }
+
+  handleNewFirstName(e) {
+    this.setState({
+      new_first_name: e.target.value
+    });
+  }
+
+  handleNewLastName(e) {
+    this.setState({
+      new_last_name: e.target.value
+    });
+  }
+
+
+  handleNewUserFormSubmission = (event) => {
+    console.log(this.state.new_first_name + ", " + this.state.new_last_name)
+    fetch('http://js-assessment-backend.herokuapp.com/users.json', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        first_name: this.state.new_first_name,
+        last_name: this.state.new_last_name,
+        status: "active"
+      })
+    })
+  };
 
   componentDidMount() {
     fetch("http://js-assessment-backend.herokuapp.com/users.json")
@@ -127,60 +159,47 @@ class App extends React.Component {
       );
     });
 
-    const New = () => {
-      // fetch('http://js-assessment-backend.herokuapp.com/users.json', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Accept': 'application/json',
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     first_name: "Alfonso",
-      //     last_name: "Crisci",
-      //     status: "active"
-      //   })
-      // })
 
+    const CreateUser = () => {
       return (
-        <div>
-          <h2>Add New User Form</h2>
-        </div>
-      );
-    }
-
-    function Edit() {
-      return (
-        <div>
-          <h2>Edit User's data</h2>
-        </div>
-      );
+        <Form>
+          <Form.Group controlId="first-name">
+            <Form.Control type="input" placeholder="Enter User's First Name" defaultValue={this.state.new_first_name} onBlur={e => this.handleNewFirstName(e)} />
+          </Form.Group>
+          <Form.Group controlId="last-name">
+            <Form.Control type="text" placeholder="Enter User's Last Name" defaultValue={this.state.new_last_name} onBlur={e => this.handleNewLastName(e)} />
+          </Form.Group>
+          <Button variant="primary" type="button" onClick={(e) => this.handleNewUserFormSubmission(e)}>
+            Submit
+          </Button>
+        </Form>
+      )
     }
 
     return (
       <Container>
         <h1 className="text-center">JS-Users App</h1>
+
         <Router>
-          <div>
-            <ul>
-              <li>
-                <Link to="/new">New</Link>
-              </li>
-              <li>
-                <Link to="/edit">Edit</Link>
-              </li>
-            </ul>
+          <h3><Link to="/">Home</Link></h3>
 
-            <hr />
-
-            <Switch>
-              <Route exact path="/new">
-                <New />
-              </Route>
-              <Route path="/edit">
-                <Edit />
-              </Route>
-            </Switch>
-          </div>
+          <Accordion>
+            <Card>
+              <Card.Header>
+                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                  <Link to="/new">Create New User</Link>
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>
+                  <Switch>
+                    <Route path="/new">
+                      <CreateUser />
+                    </Route>
+                  </Switch></Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
         </Router>
 
         <Row>
