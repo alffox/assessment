@@ -20,7 +20,6 @@ class App extends React.Component {
     };
     this.handlePaginatorClick = this.handlePaginatorClick.bind(this);
     this.toggleStatus = this.toggleStatus.bind(this);
-    this.handleNewFirstName = this.handleNewFirstName.bind(this);
   }
 
   handlePaginatorClick(event) {
