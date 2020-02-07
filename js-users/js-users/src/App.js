@@ -39,7 +39,7 @@ class App extends React.Component {
     }
   }
 
-  handleNewFirstName(e) {
+  handleNewFirstName(e) { // I hit this problem here: https://reactkungfu.com/2015/09/react-js-loses-input-focus-on-typing/
     this.setState({
       new_first_name: e.target.value
     });
