@@ -6,6 +6,8 @@ import BootstrapSwitchButton from 'bootstrap-switch-button-react' // Docs @ http
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+import JSUsersHeader from "./modules/JSUsersHeader.js";
+
 class App extends React.Component {
   constructor() {
     super();
@@ -176,8 +178,7 @@ class App extends React.Component {
 
     return (
       <Container>
-        <h1 className="text-center">JS-Users App</h1>
-
+        <JSUsersHeader />
         <Router>
           <h3><Link to="/">Home</Link></h3>
 
