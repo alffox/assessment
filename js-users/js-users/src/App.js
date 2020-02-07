@@ -52,8 +52,7 @@ class App extends React.Component {
   }
 
 
-  handleNewUserFormSubmission = (event) => {
-    console.log(this.state.new_first_name + ", " + this.state.new_last_name)
+  handleNewUserFormSubmission = () => {
     fetch('http://js-assessment-backend.herokuapp.com/users.json', {
       method: 'POST',
       headers: {
