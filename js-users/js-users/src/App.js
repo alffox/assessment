@@ -14,7 +14,7 @@ class App extends React.Component {
     super();
     this.state = {
       error: null,
-      isLoaded: false,
+      isLoading: false,
       users: [],
       currentPage: 1,
       usersPerPage: 10,
@@ -42,25 +42,27 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://js-assessment-backend.herokuapp.com/users.json")
-      .then(res => res.json())
-      .then(
-        (data) => {
-          this.setState({
-            isLoaded: true,
-            users: data
+    this.setState({ isLoading: true }, () => {
+      fetch("http://js-assessment-backend.herokuapp.com/users.json")
+        .then(res => res.json())
+        .then(
+          (data) => {
+            this.setState({
+              isLoading: false,
+              users: data
+            });
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            this.setState({
+              isLoaded: true,
+              error
+            });
           });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    }
+    )
   }
 
   render() {
@@ -90,6 +92,7 @@ class App extends React.Component {
           <Switch>
             <Route path="" render={(props) =>
               <JSUsersTable {...props}
+                isLoading={this.state.isLoading}
                 users={this.state.users}
                 currentPage={this.state.currentPage}
                 usersPerPage={this.state.usersPerPage}

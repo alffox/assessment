@@ -1,5 +1,6 @@
 import React from "react";
 
+import JSUsersPulse from "./JSUsersPulse.js";
 import { Table, Pagination } from 'react-bootstrap';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react' // Docs @ https://gitbrent.github.io/bootstrap-switch-button-react/
 import Moment from 'react-moment';
@@ -32,66 +33,70 @@ class JSUsersTable extends React.Component {
         });
         return (
             <div>
-                <Table striped bordered hover responsive variant="dark">
-                    <thead>
-                        <tr>
-                            <th>Status</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Created At</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {currentUsers.map((user, index) => {
-                            return (
-                                <tr key={index}>
-                                    {user.status === "active" ? (
-                                        <td>
-                                            <BootstrapSwitchButton
-                                                size="sm"
-                                                width={75}
-                                                checked={true}
-                                                onlabel='Active'
-                                                offlabel='Locked'
-                                                onChange={this.props.toggleStatus.bind(this, user)}
-                                                onstyle="light"
-                                                offstyle="dark"
-                                            />
-                                        </td>
-                                    ) : (
-                                            <td>
-                                                <BootstrapSwitchButton
-                                                    size="sm"
-                                                    width={75}
-                                                    checked={false}
-                                                    onlabel='Active'
-                                                    offlabel='Locked'
-                                                    onChange={this.props.toggleStatus.bind(this, user)}
-                                                    onstyle="light"
-                                                    offstyle="dark"
-                                                />
-                                            </td>
-                                        )}
-                                    {user.status === "active" ? (
-                                        <td>{user.first_name}</td>
-                                    ) : (
-                                            <td><del>{user.first_name}</del></td>
-                                        )}
-                                    {user.status === "active" ? (
-                                        <td>{user.last_name}</td>
-                                    ) : (
-                                            <td><del>{user.last_name}</del></td>
-                                        )}
-                                    {user.status === "active" ? (
-                                        <td><Moment format="DD MMMM GGGG, hh:mm:ss">{user.created_at}</Moment></td>
-                                    ) : (
-                                            <td><del><Moment format="DD MMMM GGGG, hh:mm:ss">{user.created_at}</Moment></del></td>
-                                        )}
+                {this.props.isLoading ? (
+                    <JSUsersPulse />
+                ) : (
+                        <Table striped bordered hover responsive variant="dark">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Created At</th>
                                 </tr>
-                            );
-                        })}
-                    </tbody>
-                </Table>
+                            </thead>
+                            <tbody>
+                                {currentUsers.map((user, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            {user.status === "active" ? (
+                                                <td>
+                                                    <BootstrapSwitchButton
+                                                        size="sm"
+                                                        width={75}
+                                                        checked={true}
+                                                        onlabel='Active'
+                                                        offlabel='Locked'
+                                                        onChange={this.props.toggleStatus.bind(this, user)}
+                                                        onstyle="light"
+                                                        offstyle="dark"
+                                                    />
+                                                </td>
+                                            ) : (
+                                                    <td>
+                                                        <BootstrapSwitchButton
+                                                            size="sm"
+                                                            width={75}
+                                                            checked={false}
+                                                            onlabel='Active'
+                                                            offlabel='Locked'
+                                                            onChange={this.props.toggleStatus.bind(this, user)}
+                                                            onstyle="light"
+                                                            offstyle="dark"
+                                                        />
+                                                    </td>
+                                                )}
+                                            {user.status === "active" ? (
+                                                <td>{user.first_name}</td>
+                                            ) : (
+                                                    <td><del>{user.first_name}</del></td>
+                                                )}
+                                            {user.status === "active" ? (
+                                                <td>{user.last_name}</td>
+                                            ) : (
+                                                    <td><del>{user.last_name}</del></td>
+                                                )}
+                                            {user.status === "active" ? (
+                                                <td><Moment format="DD MMMM GGGG, hh:mm:ss">{user.created_at}</Moment></td>
+                                            ) : (
+                                                    <td><del><Moment format="DD MMMM GGGG, hh:mm:ss">{user.created_at}</Moment></del></td>
+                                                )}
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </Table>
+                    )}
                 <Pagination size="small" className="d-flex flex-wrap">{renderPageNumbers}</Pagination>
             </div>
         );
