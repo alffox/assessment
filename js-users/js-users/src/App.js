@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 
-import { Container, Row, Nav, Navbar, Form, Button, Pagination, Table } from 'react-bootstrap';
-import BootstrapSwitchButton from 'bootstrap-switch-button-react' // Docs @ https://gitbrent.github.io/bootstrap-switch-button-react/
+import { Container, Row, Nav, Navbar, Form, Button } from 'react-bootstrap';
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import JSUsersHeader from "./modules/JSUsersHeader.js";
+import JSUsersTable from "./modules/JSUsersTable.js";
 
 class App extends React.Component {
   constructor() {
@@ -91,74 +91,6 @@ class App extends React.Component {
   }
 
   render() {
-    // Solution inspired by https://stackoverflow.com/questions/40232847/how-to-implement-pagination-in-reactjs
-    const indexOfLastUser = this.state.currentPage * this.state.usersPerPage;
-    const indexOfFirstUser = indexOfLastUser - this.state.usersPerPage;
-    const currentUsers = this.state.users.slice(indexOfFirstUser, indexOfLastUser);
-
-    const renderUsers = currentUsers.map((user, index) => {
-      return (
-        <tr key={index}>
-          {user.status === "active" ? (
-            <td>
-              <BootstrapSwitchButton
-                size="sm"
-                width={75}
-                checked={true}
-                onlabel='Active'
-                offlabel='Locked'
-                onChange={this.toggleStatus.bind(this, user)}
-              />
-            </td>
-          ) : (
-              <td>
-                <BootstrapSwitchButton
-                  size="sm"
-                  width={75}
-                  checked={false}
-                  onlabel='Active'
-                  offlabel='Locked'
-                  onChange={this.toggleStatus.bind(this, user)}
-                />
-              </td>
-            )}
-          {user.status === "active" ? (
-            <td>{user.first_name}</td>
-          ) : (
-              <td><del>{user.first_name}</del></td>
-            )}
-          {user.status === "active" ? (
-            <td>{user.last_name}</td>
-          ) : (
-              <td><del>{user.last_name}</del></td>
-            )}
-          {user.status === "active" ? (
-            <td>{user.created_at}</td>
-          ) : (
-              <td><del>{user.created_at}</del></td>
-            )}
-        </tr>
-      )
-    });
-
-    const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(this.state.users.length / this.state.usersPerPage); i++) {
-      pageNumbers.push(i);
-    }
-
-    const renderPageNumbers = pageNumbers.map(number => {
-      return (
-        <Pagination.Item
-          key={number}
-          id={number}
-          active={number === this.state.currentPage}
-          onClick={this.handlePaginatorClick}
-        >
-          {number}
-        </Pagination.Item>
-      );
-    });
-
 
     const CreateUser = () => {
       return (
@@ -175,13 +107,6 @@ class App extends React.Component {
         </Form>
       )
     }
-
-    const ciao = () => {
-      return (
-        <h1>hello world</h1>
-      )
-    }
-
     return (
       <Container>
         <JSUsersHeader />
@@ -197,28 +122,19 @@ class App extends React.Component {
             </Navbar.Collapse>
           </Navbar>
 
-          <Row>
-            <Switch>
-              <Route exact path="/" component={JSUsersTable} />
-              <Route exact path="/new" component={CreateUser} />
-            </Switch>
-            <Table striped bordered hover responsive>
-              <thead>
-                <tr>
-                  <th>Status</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Created At</th>
-                </tr>
-              </thead>
-              <tbody>
-                {renderUsers}
-              </tbody>
-            </Table>
-            <Row>
-              <Pagination size="small">{renderPageNumbers}</Pagination>
-            </Row>
-          </Row>
+          <Switch>
+            <Route path="/" render={(props) =>
+              <JSUsersTable {...props}
+                users={this.state.users}
+                currentPage={this.state.currentPage}
+                usersPerPage={this.state.usersPerPage}
+                toggleStatus={this.toggleStatus}
+                handlePaginatorClick={this.handlePaginatorClick} />}
+            />
+
+            <Route exact path="/new" component={CreateUser} />
+          </Switch>
+
         </Router>
       </Container>
     );
