@@ -69,32 +69,32 @@ class App extends React.Component {
         <JSUsersHeader />
         <Router>
           <Navbar className="navbar navbar-dark bg-dark expand" expand="lg">
-            <Navbar.Brand href="/">JS Users App</Navbar.Brand>
+            <Navbar.Brand>JS Users App</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Nav.Link as={Link} to="/" >Home</Nav.Link>
+                <Nav.Link as={Link} to="" >Home</Nav.Link>
                 <Nav.Link as={Link} to="/new" >Create New User</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
 
           <Switch>
-            <Route path="/" render={(props) =>
+            <Route path="/new" render={(props) =>
+              <JSCreateUser {...props}
+                new_first_name={this.state.new_first_name}
+                new_last_name={this.state.new_last_name}
+              />}
+            />
+          </Switch>
+          <Switch>
+            <Route path="" render={(props) =>
               <JSUsersTable {...props}
                 users={this.state.users}
                 currentPage={this.state.currentPage}
                 usersPerPage={this.state.usersPerPage}
                 toggleStatus={this.toggleStatus}
                 handlePaginatorClick={this.handlePaginatorClick} />}
-            />
-          </Switch>
-          <Switch>
-            <Route path="/new" render={(props) =>
-              <JSCreateUser {...props}
-                new_first_name={this.state.new_first_name}
-                new_last_name={this.state.new_last_name}
-              />}
             />
           </Switch>
 
