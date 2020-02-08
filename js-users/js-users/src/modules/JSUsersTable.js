@@ -92,7 +92,7 @@ class JSUsersTable extends React.Component {
                         })}
                     </tbody>
                 </Table>
-                <Pagination size="small" >{renderPageNumbers}</Pagination>
+                <Pagination size="small" className="d-flex flex-wrap">{renderPageNumbers}</Pagination>
             </div>
         );
     }
