@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import { Container, Row, Col, Card, Form, Button, Pagination, Table, Accordion } from 'react-bootstrap';
+import { Container, Row, Nav, Navbar, Form, Button, Pagination, Table } from 'react-bootstrap';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react' // Docs @ https://gitbrent.github.io/bootstrap-switch-button-react/
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -176,49 +176,50 @@ class App extends React.Component {
       )
     }
 
+    const ciao = () => {
+      return (
+        <h1>hello world</h1>
+      )
+    }
+
     return (
       <Container>
         <JSUsersHeader />
         <Router>
-          <h3><Link to="/">Home</Link></h3>
+          <Navbar className="navbar navbar-dark bg-dark expand" expand="lg">
+            <Navbar.Brand href="/">JS Users App</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link as={Link} to="/" >Home</Nav.Link>
+                <Nav.Link as={Link} to="/new" >Create New User</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
 
-          <Accordion>
-            <Card>
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                  <Link to="/new">Create New User</Link>
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="0">
-                <Card.Body>
-                  <Switch>
-                    <Route path="/new">
-                      <CreateUser />
-                    </Route>
-                  </Switch></Card.Body>
-              </Accordion.Collapse>
-            </Card>
-          </Accordion>
-        </Router>
-
-        <Row>
-          <Table striped bordered hover responsive>
-            <thead>
-              <tr>
-                <th>Status</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Created At</th>
-              </tr>
-            </thead>
-            <tbody>
-              {renderUsers}
-            </tbody>
-          </Table>
           <Row>
-            <Pagination size="small">{renderPageNumbers}</Pagination>
+            <Switch>
+              <Route exact path="/" component={JSUsersTable} />
+              <Route exact path="/new" component={CreateUser} />
+            </Switch>
+            <Table striped bordered hover responsive>
+              <thead>
+                <tr>
+                  <th>Status</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Created At</th>
+                </tr>
+              </thead>
+              <tbody>
+                {renderUsers}
+              </tbody>
+            </Table>
+            <Row>
+              <Pagination size="small">{renderPageNumbers}</Pagination>
+            </Row>
           </Row>
-        </Row>
+        </Router>
       </Container>
     );
   }
