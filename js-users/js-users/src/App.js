@@ -5,6 +5,7 @@ import { Container, Row, Nav, Navbar, } from 'react-bootstrap';
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+import JSUsersError from "./modules/JSUsersError.js";
 import JSUsersHeader from "./modules/JSUsersHeader.js";
 import JSUsersTable from "./modules/JSUsersTable.js";
 import JSCreateUser from "./modules/JSCreateUser.js";
@@ -57,7 +58,7 @@ class App extends React.Component {
           // exceptions from actual bugs in components.
           (error) => {
             this.setState({
-              isLoaded: true,
+              isLoading: true,
               error
             });
           });
@@ -69,39 +70,43 @@ class App extends React.Component {
     return (
       <Container>
         <JSUsersHeader />
-        <Router>
-          <Navbar className="navbar navbar-dark bg-dark expand" expand="lg">
-            <Navbar.Brand>JS Users App</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto">
-                <Nav.Link as={Link} to="" >Home</Nav.Link>
-                <Nav.Link as={Link} to="/new" >Create New User</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
+        {this.state.error ? (
+          <JSUsersError
+            error={this.state.error} />
+        ) : (
+            <Router>
+              <Navbar className="navbar navbar-dark bg-dark expand" expand="lg">
+                <Navbar.Brand>JS Users App</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="mr-auto">
+                    <Nav.Link as={Link} to="" >Home</Nav.Link>
+                    <Nav.Link as={Link} to="/new" >Create New User</Nav.Link>
+                  </Nav>
+                </Navbar.Collapse>
+              </Navbar>
 
-          <Switch>
-            <Route path="/new" render={(props) =>
-              <JSCreateUser {...props}
-                new_first_name={this.state.new_first_name}
-                new_last_name={this.state.new_last_name}
-              />}
-            />
-          </Switch>
-          <Switch>
-            <Route path="" render={(props) =>
-              <JSUsersTable {...props}
-                isLoading={this.state.isLoading}
-                users={this.state.users}
-                currentPage={this.state.currentPage}
-                usersPerPage={this.state.usersPerPage}
-                toggleStatus={this.toggleStatus}
-                handlePaginatorClick={this.handlePaginatorClick} />}
-            />
-          </Switch>
-
-        </Router>
+              <Switch>
+                <Route path="/new" render={(props) =>
+                  <JSCreateUser {...props}
+                    new_first_name={this.state.new_first_name}
+                    new_last_name={this.state.new_last_name}
+                  />}
+                />
+              </Switch>
+              <Switch>
+                <Route path="" render={(props) =>
+                  <JSUsersTable {...props}
+                    isLoading={this.state.isLoading}
+                    users={this.state.users}
+                    currentPage={this.state.currentPage}
+                    usersPerPage={this.state.usersPerPage}
+                    toggleStatus={this.toggleStatus}
+                    handlePaginatorClick={this.handlePaginatorClick} />}
+                />
+              </Switch>
+            </Router>
+          )}
       </Container>
     );
   }
