@@ -30,6 +30,11 @@ class JSCreateUser extends React.Component {
                 status: "active"
             })
         })
+            .then(function (response) {
+                response.text().then((s) => console.log((s)));
+            }).catch(function (error) {
+                console.log(error.body);
+            });
     };
 
     render() {
