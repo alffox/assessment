@@ -1,8 +1,8 @@
 import React from "react";
 
 import { Table, Pagination } from 'react-bootstrap';
-
 import BootstrapSwitchButton from 'bootstrap-switch-button-react' // Docs @ https://gitbrent.github.io/bootstrap-switch-button-react/
+import Moment from 'react-moment';
 
 
 class JSUsersTable extends React.Component {
@@ -83,9 +83,9 @@ class JSUsersTable extends React.Component {
                                             <td><del>{user.last_name}</del></td>
                                         )}
                                     {user.status === "active" ? (
-                                        <td>{user.created_at}</td>
+                                        <td><Moment format="DD MMMM GGGG, hh:mm:ss">{user.created_at}</Moment></td>
                                     ) : (
-                                            <td><del>{user.created_at}</del></td>
+                                            <td><del><Moment format="DD MMMM GGGG, hh:mm:ss">{user.created_at}</Moment></del></td>
                                         )}
                                 </tr>
                             );
