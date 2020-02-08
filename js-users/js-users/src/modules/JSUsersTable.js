@@ -54,8 +54,8 @@ class JSUsersTable extends React.Component {
                                                 onlabel='Active'
                                                 offlabel='Locked'
                                                 onChange={this.props.toggleStatus.bind(this, user)}
-                                                onstyle="dark"
-                                                offstyle="light"
+                                                onstyle="light"
+                                                offstyle="dark"
                                             />
                                         </td>
                                     ) : (
@@ -67,8 +67,8 @@ class JSUsersTable extends React.Component {
                                                     onlabel='Active'
                                                     offlabel='Locked'
                                                     onChange={this.props.toggleStatus.bind(this, user)}
-                                                    onstyle="dark"
-                                                    offstyle="outline-light"
+                                                    onstyle="light"
+                                                    offstyle="dark"
                                                 />
                                             </td>
                                         )}
