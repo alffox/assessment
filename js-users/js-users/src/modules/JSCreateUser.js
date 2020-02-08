@@ -4,7 +4,7 @@ import { Row, Col, Form, Button } from 'react-bootstrap';
 
 class JSCreateUser extends React.Component {
 
-    handleNewFirstName(e) { // I hit this problem here: https://reactkungfu.com/2015/09/react-js-loses-input-focus-on-typing/
+    handleNewFirstName(e) {
         this.setState({
             new_first_name: e.target.value
         });
@@ -44,11 +44,11 @@ class JSCreateUser extends React.Component {
                 <Form>
 
                     <Form.Group controlId="first-name">
-                        <Form.Control type="input" placeholder="Enter User's First Name" defaultValue={this.props.new_first_name} onBlur={e => this.handleNewFirstName(e)} />
+                        <Form.Control type="input" placeholder="Enter User's First Name" defaultValue={this.props.new_first_name} onChange={e => this.handleNewFirstName(e)} />
                     </Form.Group>
 
                     <Form.Group controlId="last-name">
-                        <Form.Control type="text" placeholder="Enter User's Last Name" defaultValue={this.props.new_last_name} onBlur={e => this.handleNewLastName(e)} />
+                        <Form.Control type="text" placeholder="Enter User's Last Name" defaultValue={this.props.new_last_name} onChange={e => this.handleNewLastName(e)} />
                     </Form.Group>
                     <Button variant="dark" type="button" onClick={(e) => this.handleNewUserFormSubmission(e)}>
                         Submit
