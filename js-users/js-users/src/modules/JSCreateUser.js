@@ -7,7 +7,10 @@ class JSCreateUser extends React.Component {
     constructor() {
         super();
         this.state = {
-            serverMessage: ''
+            serverMessage: '',
+            isFirstNameMissing: null,
+            isLastNameMissing: null,
+            IsUserCreated: null
         };
     }
 
@@ -27,6 +30,29 @@ class JSCreateUser extends React.Component {
         this.setState({
             serverMessage: text
         });
+
+        if (escape(this.state.serverMessage) === "%7B%22first_name%22%3A%5B%22can%27t%20be%20blank%22%5D%7D") {
+            this.setState({
+                isFirstNameMissing: true
+            });
+        }
+        if (escape(this.state.serverMessage) === "%7B%22last_name%22%3A%5B%22can%27t%20be%20blank%22%5D%7D") {
+            this.setState({
+                isLastNameMissing: true
+            });
+        }
+        if (escape(this.state.serverMessage) === "%7B%22first_name%22%3A%5B%22can%27t%20be%20blank%22%5D%2C%22last_name%22%3A%5B%22can%27t%20be%20blank%22%5D%7D") {
+            this.setState({
+                isFirstNameMissing: true,
+                isLastNameMissing: true
+            });
+        }
+        if (this.state.serverMessage.length > 64) {
+            this.setState({
+                IsUserCreated: true
+            });
+        }
+
     }
 
     handleNewUserFormSubmission = () => {
@@ -57,21 +83,46 @@ class JSCreateUser extends React.Component {
             <div>
                 <br />
                 <Form>
-
-                    <Form.Group controlId="first-name">
-                        <Form.Control type="input" placeholder="Enter User's First Name" defaultValue={this.props.new_first_name} onChange={e => this.handleNewFirstName(e)} />
-                    </Form.Group>
-
-                    <Form.Group controlId="last-name">
-                        <Form.Control type="text" placeholder="Enter User's Last Name" defaultValue={this.props.new_last_name} onChange={e => this.handleNewLastName(e)} />
-                    </Form.Group>
+                    <Row>
+                        <Col>
+                            <Form.Group controlId="first-name">
+                                <Form.Control type="input" placeholder="First Name" defaultValue={this.props.new_first_name} onChange={e => this.handleNewFirstName(e)} />
+                            </Form.Group>
+                        </Col>
+                        {this.state.isFirstNameMissing ? (
+                            <Col>
+                                <Alert variant="info" className="mb-0 py-1">
+                                    First Name is required
+                                </Alert>
+                            </Col>) : (
+                                <div></div>
+                            )}
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group controlId="last-name">
+                                <Form.Control sm="3" type="text" placeholder="Last Name" defaultValue={this.props.new_last_name} onChange={e => this.handleNewLastName(e)} />
+                            </Form.Group>
+                        </Col>
+                        {this.state.isLastNameMissing ? (
+                            <Col>
+                                <Alert variant="info" className="mb-0 py-1">
+                                    Last Name is required
+                            </Alert>
+                            </Col>) : (
+                                <div></div>
+                            )}
+                    </Row>
                     <Button variant="dark" type="button" onClick={(e) => this.handleNewUserFormSubmission(e)}>
                         Submit
                     </Button>
                     <hr />
-                    <Alert variant="danger">
-                        <p>Can't Submit form: {this.state.serverMessage}</p>
-                    </Alert>
+                    {this.state.IsUserCreated ? (
+                        <Alert variant="success">
+                            User Created successfully!
+                        </Alert>) : (
+                            <div></div>
+                        )}
                 </Form>
             </div>
         );
