@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import { Container, Row, Nav, Navbar, } from 'react-bootstrap';
+import { Container, Row, Nav, Navbar, Image } from 'react-bootstrap';
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -76,7 +76,7 @@ class App extends React.Component {
         ) : (
             <Router>
               <Navbar className="navbar navbar-dark bg-dark expand" expand="lg">
-                <Navbar.Brand>JS Users App</Navbar.Brand>
+                <Navbar.Brand>JS-Users</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
@@ -107,6 +107,7 @@ class App extends React.Component {
               </Switch>
             </Router>
           )}
+        <small>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></small>
       </Container>
     );
   }
