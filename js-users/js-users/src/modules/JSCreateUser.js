@@ -1,8 +1,15 @@
 import React from "react";
 
-import { Row, Col, Form, Button } from 'react-bootstrap';
+import { Row, Col, Form, Button, Alert } from 'react-bootstrap';
 
 class JSCreateUser extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            serverMessage: ''
+        };
+    }
 
     handleNewFirstName(e) {
         this.setState({
@@ -16,6 +23,11 @@ class JSCreateUser extends React.Component {
         });
     }
 
+    handleServerMessage(text) {
+        this.setState({
+            serverMessage: text
+        });
+    }
 
     handleNewUserFormSubmission = () => {
         fetch('http://js-assessment-backend.herokuapp.com/users.json', {
@@ -30,11 +42,14 @@ class JSCreateUser extends React.Component {
                 status: "active"
             })
         })
-            .then(function (response) {
-                response.text().then((s) => console.log((s)));
-            }).catch(function (error) {
-                console.log(error.body);
-            });
+            .then(response => response.text())
+            .then(
+                (text) => {
+                    this.handleServerMessage(text)
+                },
+                (error) => {
+                    console.log(error.body);
+                });
     };
 
     render() {
@@ -53,8 +68,11 @@ class JSCreateUser extends React.Component {
                     <Button variant="dark" type="button" onClick={(e) => this.handleNewUserFormSubmission(e)}>
                         Submit
                     </Button>
+                    <hr />
+                    <Alert variant="danger">
+                        <p>Can't Submit form: {this.state.serverMessage}</p>
+                    </Alert>
                 </Form>
-                <br />
             </div>
         );
     }
