@@ -21,7 +21,6 @@ class JSUsersTable extends React.Component {
         const renderPageNumbers = pageNumbers.map(number => {
             return (
                 <Pagination.Item
-                    className="text-dark"
                     key={number}
                     id={number}
                     active={number === this.props.currentPage}
