@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 
-import { Container, Row, Nav, Navbar, Form, Button } from 'react-bootstrap';
+import { Container, Row, Nav, Navbar, } from 'react-bootstrap';
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import JSUsersHeader from "./modules/JSUsersHeader.js";
 import JSUsersTable from "./modules/JSUsersTable.js";
+import JSCreateUser from "./modules/JSCreateUser.js";
 
 class App extends React.Component {
   constructor() {
@@ -40,34 +41,6 @@ class App extends React.Component {
     }
   }
 
-  handleNewFirstName(e) { // I hit this problem here: https://reactkungfu.com/2015/09/react-js-loses-input-focus-on-typing/
-    this.setState({
-      new_first_name: e.target.value
-    });
-  }
-
-  handleNewLastName(e) {
-    this.setState({
-      new_last_name: e.target.value
-    });
-  }
-
-
-  handleNewUserFormSubmission = () => {
-    fetch('http://js-assessment-backend.herokuapp.com/users.json', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        first_name: this.state.new_first_name,
-        last_name: this.state.new_last_name,
-        status: "active"
-      })
-    })
-  };
-
   componentDidMount() {
     fetch("http://js-assessment-backend.herokuapp.com/users.json")
       .then(res => res.json())
@@ -91,22 +64,6 @@ class App extends React.Component {
   }
 
   render() {
-
-    const CreateUser = () => {
-      return (
-        <Form>
-          <Form.Group controlId="first-name">
-            <Form.Control type="input" placeholder="Enter User's First Name" defaultValue={this.state.new_first_name} onBlur={e => this.handleNewFirstName(e)} />
-          </Form.Group>
-          <Form.Group controlId="last-name">
-            <Form.Control type="text" placeholder="Enter User's Last Name" defaultValue={this.state.new_last_name} onBlur={e => this.handleNewLastName(e)} />
-          </Form.Group>
-          <Button variant="primary" type="button" onClick={(e) => this.handleNewUserFormSubmission(e)}>
-            Submit
-          </Button>
-        </Form>
-      )
-    }
     return (
       <Container>
         <JSUsersHeader />
@@ -131,8 +88,14 @@ class App extends React.Component {
                 toggleStatus={this.toggleStatus}
                 handlePaginatorClick={this.handlePaginatorClick} />}
             />
-
-            <Route exact path="/new" component={CreateUser} />
+          </Switch>
+          <Switch>
+            <Route path="/new" render={(props) =>
+              <JSCreateUser {...props}
+                new_first_name={this.state.new_first_name}
+                new_last_name={this.state.new_last_name}
+              />}
+            />
           </Switch>
 
         </Router>
