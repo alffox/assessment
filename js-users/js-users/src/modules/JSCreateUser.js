@@ -41,7 +41,7 @@ class JSCreateUser extends React.Component {
                 <Form.Group controlId="last-name">
                     <Form.Control type="text" placeholder="Enter User's Last Name" defaultValue={this.props.new_last_name} onBlur={e => this.handleNewLastName(e)} />
                 </Form.Group>
-                <Button variant="primary" type="button" onClick={(e) => this.handleNewUserFormSubmission(e)}>
+                <Button variant="dark" type="button" onClick={(e) => this.handleNewUserFormSubmission(e)}>
                     Submit
             </Button>
             </Form>

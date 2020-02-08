@@ -21,6 +21,7 @@ class JSUsersTable extends React.Component {
         const renderPageNumbers = pageNumbers.map(number => {
             return (
                 <Pagination.Item
+                    className="text-dark"
                     key={number}
                     id={number}
                     active={number === this.props.currentPage}
@@ -32,7 +33,7 @@ class JSUsersTable extends React.Component {
         });
         return (
             <div>
-                <Table striped bordered hover responsive>
+                <Table striped bordered hover responsive variant="dark">
                     <thead>
                         <tr>
                             <th>Status</th>
@@ -54,6 +55,8 @@ class JSUsersTable extends React.Component {
                                                 onlabel='Active'
                                                 offlabel='Locked'
                                                 onChange={this.props.toggleStatus.bind(this, user)}
+                                                onstyle="dark"
+                                                offstyle="light"
                                             />
                                         </td>
                                     ) : (
@@ -65,6 +68,8 @@ class JSUsersTable extends React.Component {
                                                     onlabel='Active'
                                                     offlabel='Locked'
                                                     onChange={this.props.toggleStatus.bind(this, user)}
+                                                    onstyle="dark"
+                                                    offstyle="outline-light"
                                                 />
                                             </td>
                                         )}
@@ -88,7 +93,7 @@ class JSUsersTable extends React.Component {
                         })}
                     </tbody>
                 </Table>
-                <Pagination size="small">{renderPageNumbers}</Pagination>
+                <Pagination size="small" >{renderPageNumbers}</Pagination>
             </div>
         );
     }
