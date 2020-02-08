@@ -1,3 +1,16 @@
-span.switch-handle.btn.btn-lightbtn-sm {
-    background-color: #fff;
+/* react-bootstrap Pagination component has no dark theme */
+.page-item.active .page-link {
+    color: #fff !important;
+    background-color: #343a40 !important;
+    border-color: #343a40 !important;
+}
+
+.page-link:hover {
+    color: rgba(0, 0, 0, .5) !important;
+    background-color: #e9ecef !important;
+    border-color: #dee2e6 !important;
+}
+
+.page-link {
+    color: rgba(0, 0, 0, .5) !important;
 }
