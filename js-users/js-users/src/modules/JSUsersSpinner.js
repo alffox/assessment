@@ -2,7 +2,7 @@ import React from "react";
 
 import { Spinner } from 'react-bootstrap';
 
-class JSUsersPulse extends React.Component {
+class JSUsersSpinner extends React.Component {
 
     render() {
         return (
@@ -18,4 +18,4 @@ class JSUsersPulse extends React.Component {
     }
 }
 
-export default JSUsersPulse;
+export default JSUsersSpinner;
