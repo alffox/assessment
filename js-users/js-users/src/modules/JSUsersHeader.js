@@ -7,7 +7,6 @@ import { Image } from 'react-bootstrap';
 class JSUsersHeader extends React.Component {
     render() {
         return (
-
             <header className="d-flex flex-wrap">
                 <Image
                     className="logo"
@@ -16,7 +15,6 @@ class JSUsersHeader extends React.Component {
                 />
                 <h1 className="text-center mt-3">JS-Users App</h1>
             </header>
-
         );
     }
 }
