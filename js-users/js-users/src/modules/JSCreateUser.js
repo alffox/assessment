@@ -43,6 +43,9 @@ class JSCreateUser extends React.Component {
                 isLastNameMissing: true
             });
         }
+        // I could not find a way to get both the server message and status at once.
+        // Based on the server response, if the text exceeds 64 chars,
+        // the object has been created
         if (escape(this.state.serverMessage) === "%7B%22first_name%22%3A%5B%22can%27t%20be%20blank%22%5D%2C%22last_name%22%3A%5B%22can%27t%20be%20blank%22%5D%7D") {
             this.setState({
                 isFirstNameMissing: true,

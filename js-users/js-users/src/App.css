@@ -1,20 +1,3 @@
-/* react-bootstrap Pagination component has no dark theme */
-.page-item.active .page-link {
-    color: #fff !important;
-    background-color: #343a40 !important;
-    border-color: #343a40 !important;
-}
-
-.page-link:hover {
-    color: rgba(0, 0, 0, .5) !important;
-    background-color: #e9ecef !important;
-    border-color: #dee2e6 !important;
-}
-
-.page-link {
-    color: rgba(0, 0, 0, .5) !important;
-}
-
 header,
 .flaticon-attribution,
 .spinner {
@@ -38,4 +21,22 @@ nav {
     padding: 5px;
     background-color: #fff;
     border-radius: 5px;
+}
+
+/* react-bootstrap Pagination component has no dark theme,
+The below is added to override it */
+.page-item.active .page-link {
+    color: #fff !important;
+    background-color: #343a40 !important;
+    border-color: #343a40 !important;
+}
+
+.page-link:hover {
+    color: rgba(0, 0, 0, .5) !important;
+    background-color: #e9ecef !important;
+    border-color: #dee2e6 !important;
+}
+
+.page-link {
+    color: rgba(0, 0, 0, .5) !important;
 }

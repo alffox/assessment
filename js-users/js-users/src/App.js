@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap'; //Docs: https://react-bootstrap.netlify.com/
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import JSUsersError from "./modules/JSUsersError.js";
@@ -30,7 +30,7 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount() { // https://en.reactjs.org/docs/faq-ajax.html#how-can-i-make-an-ajax-call
     this.setState({ isLoading: true }, () => {
       fetch("http://js-assessment-backend.herokuapp.com/users.json")
         .then(res => res.json())
@@ -41,9 +41,6 @@ class App extends React.Component {
               users: data
             });
           },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
           (error) => {
             this.setState({
               isLoading: true,
@@ -67,6 +64,7 @@ class App extends React.Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
+                    {/* Credits: https://stackoverflow.com/a/54843616 */}
                     <Nav.Link as={Link} to="" >Home</Nav.Link>
                     <Nav.Link as={Link} to="/new" >Create New User</Nav.Link>
                   </Nav>
@@ -74,6 +72,7 @@ class App extends React.Component {
               </Navbar>
 
               <Switch>
+                {/* Credits: https://stackoverflow.com/a/27868548 */}
                 <Route path="/new" render={(props) =>
                   <JSCreateUser {...props}
                   />}
@@ -90,6 +89,7 @@ class App extends React.Component {
               </Switch>
             </Router>
           )}
+        {/* Required by https://support.flaticon.com/hc/en-us/articles/207248209-Attribution-How-when-and-where- */}
         <small><span className="flaticon-attribution">Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></span></small>
       </Container>
     );
