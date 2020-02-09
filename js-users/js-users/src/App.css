@@ -15,6 +15,11 @@
     color: rgba(0, 0, 0, .5) !important;
 }
 
+header,
+.flaticon-attribution {
+    color: #fff;
+}
+
 .logo {
     width: 50px;
 }

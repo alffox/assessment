@@ -90,7 +90,7 @@ class App extends React.Component {
               </Switch>
             </Router>
           )}
-        <small>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></small>
+        <small><span className="flaticon-attribution">Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></span></small>
       </Container>
     );
   }
