@@ -6,7 +6,7 @@ class JSUsersPagination extends React.Component {
 
     render() {
         const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(this.props.users.length / this.props.usersPerPage); i++) {
+        for (let i = 1; i <= (this.props.users.length / this.props.usersPerPage); i++) {
             pageNumbers.push(i);
         }
 
