@@ -1,4 +1,4 @@
-# JavaScript/Front-end Developer - User List
+# JS-Users App
 
 ## Instructions
 
@@ -49,10 +49,12 @@ Use the update action when modifying the status field.
 ### 3. exercise
 
 Append 2 new routes in your application. On the `/new` route you should be able
-to create new users, on the `/edit` route the selected user’s attributes can be
-modified. You should only be able to set the user’s first and last name.
+to create new users. You should only be able to set the user’s first and last name.
 Handle validation errors given back from the server, display the error message
 next to the attribute’s label.
+
+TODO: On the `/edit` route the selected user’s attributes can be
+modified.
 
 ### 4. exercise
 
