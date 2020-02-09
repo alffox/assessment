@@ -51,8 +51,7 @@ class App extends React.Component {
               error
             });
           });
-    }
-    )
+    })
   }
 
   render() {
