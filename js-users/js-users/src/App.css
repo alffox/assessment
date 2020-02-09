@@ -28,3 +28,14 @@ header,
 .logo {
     width: 50px;
 }
+
+nav {
+    border: 5px solid #fff;
+    border-radius: 5px;
+}
+
+.table-responsive {
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 5px;
+}
