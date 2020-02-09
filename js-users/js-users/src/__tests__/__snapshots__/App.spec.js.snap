@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App snapshot renders 1`] = `
+<div
+  className="container"
+>
+  <header
+    className="d-flex flex-wrap"
+  >
+    <img
+      alt="Pencil Cup"
+      className="logo"
+      src="logo.svg"
+    />
+    <h1
+      className="text-center mt-3"
+    >
+      JS-Users App
+    </h1>
+  </header>
+  <nav
+    className="navbar navbar-dark bg-dark expand navbar navbar-expand-lg navbar-light"
+  >
+    <span
+      className="navbar-brand"
+    >
+      JS-Users
+    </span>
+    <button
+      aria-controls="basic-navbar-nav"
+      aria-label="Toggle navigation"
+      className="navbar-toggler collapsed"
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      aria-expanded={null}
+      className="navbar-collapse collapse"
+      id="basic-navbar-nav"
+    >
+      <div
+        className="mr-auto navbar-nav"
+        onKeyDown={[Function]}
+      >
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          disabled={false}
+          href="/"
+          onClick={[Function]}
+        >
+          Home
+        </a>
+        <a
+          className="nav-link"
+          data-rb-event-key={null}
+          disabled={false}
+          href="/new"
+          onClick={[Function]}
+        >
+          Create New User
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div>
+    <div
+      className="text-center"
+    >
+      <div
+        className="spinner-grow"
+      />
+      Loading data ...
+    </div>
+    <ul
+      className="d-flex flex-wrap pagination pagination-small"
+    />
+  </div>
+  <small>
+    Icons made by 
+    <a
+      href="https://www.flaticon.com/authors/smashicons"
+      title="Smashicons"
+    >
+      Smashicons
+    </a>
+     from 
+    <a
+      href="https://www.flaticon.com/"
+      title="Flaticon"
+    >
+      www.flaticon.com
+    </a>
+  </small>
+</div>
+`;
+
+exports[`JSCreateUser snapshot renders 1`] = `
+<div>
+  <br />
+  <form
+    className=""
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      >
+        <div
+          className="form-group"
+        >
+          <input
+            className="form-control"
+            defaultValue=""
+            id="first-name"
+            onChange={[Function]}
+            placeholder="First Name"
+            type="input"
+          />
+        </div>
+      </div>
+      <div />
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      >
+        <div
+          className="form-group"
+        >
+          <input
+            className="form-control"
+            defaultValue=""
+            id="last-name"
+            onChange={[Function]}
+            placeholder="Last Name"
+            sm="3"
+            type="text"
+          />
+        </div>
+      </div>
+      <div />
+    </div>
+    <button
+      className="btn btn-dark"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Submit
+    </button>
+    <hr />
+    <div />
+  </form>
+</div>
+`;
+
+exports[`JSUsersHeader snapshot renders 1`] = `
+<header
+  className="d-flex flex-wrap"
+>
+  <img
+    alt="Pencil Cup"
+    className="logo"
+    src="logo.svg"
+  />
+  <h1
+    className="text-center mt-3"
+  >
+    JS-Users App
+  </h1>
+</header>
+`;

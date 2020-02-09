@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 
 import { Container, Nav, Navbar } from 'react-bootstrap';
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import JSUsersError from "./modules/JSUsersError.js";
