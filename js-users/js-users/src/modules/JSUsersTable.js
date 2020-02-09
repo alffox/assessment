@@ -1,36 +1,34 @@
 import React from "react";
 
+import JSUsersPagination from "./JSUsersPagination.js";
 import JSUsersPulse from "./JSUsersPulse.js";
-import { Table, Pagination } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react' // Docs @ https://gitbrent.github.io/bootstrap-switch-button-react/
 import Moment from 'react-moment';
 
-
 class JSUsersTable extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            currentPage: 1,
+            usersPerPage: 10
+        };
+        this.handlePaginatorClick = this.handlePaginatorClick.bind(this);
+    }
+
+    handlePaginatorClick(event) {
+        this.setState({
+            currentPage: Number(event.target.id)
+        });
+    }
 
     render() {
         // Solution inspired by https://stackoverflow.com/questions/40232847/how-to-implement-pagination-in-reactjs
-        const indexOfLastUser = this.props.currentPage * this.props.usersPerPage;
-        const indexOfFirstUser = indexOfLastUser - this.props.usersPerPage;
+        const indexOfLastUser = this.state.currentPage * this.state.usersPerPage;
+        const indexOfFirstUser = indexOfLastUser - this.state.usersPerPage;
         const currentUsers = this.props.users.slice(indexOfFirstUser, indexOfLastUser);
 
-        const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(this.props.users.length / this.props.usersPerPage); i++) {
-            pageNumbers.push(i);
-        }
-
-        const renderPageNumbers = pageNumbers.map(number => {
-            return (
-                <Pagination.Item
-                    key={number}
-                    id={number}
-                    active={number === this.props.currentPage}
-                    onClick={this.props.handlePaginatorClick.bind(this)}
-                >
-                    {number}
-                </Pagination.Item>
-            );
-        });
         return (
             <div>
                 {this.props.isLoading ? (
@@ -97,7 +95,12 @@ class JSUsersTable extends React.Component {
                             </tbody>
                         </Table>
                     )}
-                <Pagination size="small" className="d-flex flex-wrap">{renderPageNumbers}</Pagination>
+                <JSUsersPagination
+                    users={this.props.users}
+                    currentPage={this.state.currentPage}
+                    usersPerPage={this.state.usersPerPage}
+                    handlePaginatorClick={this.handlePaginatorClick}
+                />
             </div>
         );
     }

@@ -16,18 +16,9 @@ class App extends React.Component {
     this.state = {
       error: null,
       isLoading: false,
-      users: [],
-      currentPage: 1,
-      usersPerPage: 10
+      users: []
     };
-    this.handlePaginatorClick = this.handlePaginatorClick.bind(this);
     this.toggleStatus = this.toggleStatus.bind(this);
-  }
-
-  handlePaginatorClick(event) {
-    this.setState({
-      currentPage: Number(event.target.id)
-    });
   }
 
   toggleStatus(user) {
@@ -95,10 +86,8 @@ class App extends React.Component {
                   <JSUsersTable {...props}
                     isLoading={this.state.isLoading}
                     users={this.state.users}
-                    currentPage={this.state.currentPage}
-                    usersPerPage={this.state.usersPerPage}
                     toggleStatus={this.toggleStatus}
-                    handlePaginatorClick={this.handlePaginatorClick} />}
+                  />}
                 />
               </Switch>
             </Router>
