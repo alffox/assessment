@@ -16,8 +16,13 @@
 }
 
 header,
-.flaticon-attribution {
+.flaticon-attribution,
+.spinner {
     color: #fff;
+}
+
+.spinner {
+    background-color: #454d55;
 }
 
 .logo {
