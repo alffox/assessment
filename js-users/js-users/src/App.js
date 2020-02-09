@@ -18,9 +18,7 @@ class App extends React.Component {
       isLoading: false,
       users: [],
       currentPage: 1,
-      usersPerPage: 10,
-      new_first_name: '',
-      new_last_name: ''
+      usersPerPage: 10
     };
     this.handlePaginatorClick = this.handlePaginatorClick.bind(this);
     this.toggleStatus = this.toggleStatus.bind(this);
@@ -89,8 +87,6 @@ class App extends React.Component {
               <Switch>
                 <Route path="/new" render={(props) =>
                   <JSCreateUser {...props}
-                    new_first_name={this.state.new_first_name}
-                    new_last_name={this.state.new_last_name}
                   />}
                 />
               </Switch>

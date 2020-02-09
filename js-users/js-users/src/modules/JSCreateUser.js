@@ -7,6 +7,8 @@ class JSCreateUser extends React.Component {
     constructor() {
         super();
         this.state = {
+            new_first_name: '',
+            new_last_name: '',
             serverMessage: '',
             isFirstNameMissing: null,
             isLastNameMissing: null,
@@ -86,7 +88,7 @@ class JSCreateUser extends React.Component {
                     <Row>
                         <Col>
                             <Form.Group controlId="first-name">
-                                <Form.Control type="input" placeholder="First Name" defaultValue={this.props.new_first_name} onChange={e => this.handleNewFirstName(e)} />
+                                <Form.Control type="input" placeholder="First Name" defaultValue={this.state.new_first_name} onChange={e => this.handleNewFirstName(e)} />
                             </Form.Group>
                         </Col>
                         {this.state.isFirstNameMissing ? (
@@ -101,7 +103,7 @@ class JSCreateUser extends React.Component {
                     <Row>
                         <Col>
                             <Form.Group controlId="last-name">
-                                <Form.Control sm="3" type="text" placeholder="Last Name" defaultValue={this.props.new_last_name} onChange={e => this.handleNewLastName(e)} />
+                                <Form.Control sm="3" type="text" placeholder="Last Name" defaultValue={this.state.new_last_name} onChange={e => this.handleNewLastName(e)} />
                             </Form.Group>
                         </Col>
                         {this.state.isLastNameMissing ? (
