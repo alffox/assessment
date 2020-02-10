@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
+import logo from "./logo.svg";
 
-import { Container, Nav, Navbar } from 'react-bootstrap'; //Docs: https://react-bootstrap.netlify.com/
+import { Container, Nav, Navbar, Image } from 'react-bootstrap'; //Docs: https://react-bootstrap.netlify.com/
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import JSUsersError from "./modules/JSUsersError.js";
@@ -60,7 +61,16 @@ class App extends React.Component {
         ) : (
             <Router>
               <Navbar className="navbar navbar-dark bg-dark expand" expand="lg">
-                <Navbar.Brand>JS-Users</Navbar.Brand>
+                <Navbar.Brand>
+                  <Image
+                    className="d-inline-block align-top"
+                    src={logo}
+                    width="30"
+                    height="30"
+                    alt="Pencil Cup"
+                  />{' '}
+                  JS-Users App
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
