@@ -1,10 +1,11 @@
 import React from "react";
 
-import JSUsersPagination from "./JSUsersPagination.js";
-import JSUsersSpinner from "./JSUsersSpinner.js";
 import { Table } from 'react-bootstrap';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react' // Docs @ https://gitbrent.github.io/bootstrap-switch-button-react/
 import Moment from 'react-moment';
+
+import JSUsersPagination from "./JSUsersPagination.js";
+import JSUsersSpinner from "./JSUsersSpinner.js";
 
 class JSUsersTable extends React.Component {
 
